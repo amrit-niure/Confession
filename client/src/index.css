@@ -1,0 +1,26 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    font-family: 'Rajdhani',' sans-serif';
+}
+
+
+  /* Hide the scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 0;
+  }
+
+  /* Optional: Style the scrollbar track and thumb */
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #888;
+  }
+
