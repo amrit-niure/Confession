@@ -9,31 +9,31 @@ import {MdFeedback} from 'react-icons/md'
 const SideBar = () => {
   return (
     <aside className='pl-[2rem] lg:pl-0 pt-[4rem] pb-[2rem] flex flex-col justify-between '>
-        <ul className='flex flex-col gap-8 text-md lg:text-lg items-start'>
-            <li>
-                <NavLink to='.' className='flex gap-4 justify-baseline items-center'> <FaUserAlt className='text-lg lg:text-xl'/> <h1>User Profile</h1></NavLink>
+        <ul className='flex flex-col gap-6 text-md lg:text-lg items-start'>
+            <li className='hover:bg-white hover:rounded-r-full'>
+                <NavLink to='.' className='flex gap-4 justify-baseline items-center px-4 py-2 '> <FaUserAlt className='text-lg lg:text-xl'/> <h1>User Profile</h1></NavLink>
             </li>
-            <li>
-                <NavLink to='.' className='flex gap-4 justify-center items-center'><FaHome className='text-2xl '/> <h1>Home</h1></NavLink>
+            <li className='hover:bg-white hover:rounded-r-full'>
+                <NavLink to='.' className='flex gap-4 justify-center items-center px-4 py-2 '><FaHome className='text-2xl '/> <h1>Home</h1></NavLink>
             </li>
-            <li>
-                <NavLink to='categories' className='flex gap-4 justify-center items-center'> <FaFolderOpen className='text-xl ' /> <h1>Categories</h1></NavLink>
+            <li className='hover:bg-white hover:rounded-r-full'>
+                <NavLink to='categories' className='flex gap-4 justify-center items-center px-4 py-2 '> <FaFolderOpen className='text-xl ' /> <h1>Categories</h1></NavLink>
             </li>
-            <li>
-                <NavLink to='about' className='flex gap-4 justify-center items-center'> <SiBlogger className='text-2xl '/> <h1>Blogs</h1></NavLink>
+            <li className='hover:bg-white hover:rounded-r-full'>
+                <NavLink to='about' className='flex gap-4 justify-center items-center px-4 py-2 '> <SiBlogger className='text-2xl '/> <h1>Blogs</h1></NavLink>
             </li>
-            <li>
-                <NavLink to='feedback' className='flex gap-4 justify-center items-center'> <MdFeedback className='text-2xl'/> <h1>FAQs</h1></NavLink>
+            <li className='hover:bg-white hover:rounded-r-full'> 
+                <NavLink to='feedback' className='flex gap-4 justify-center items-center px-4 py-2 '> <MdFeedback className='text-2xl'/> <h1>FAQs</h1></NavLink>
             </li>
            
         </ul>
        <div>
        <ul>
         <li>
-            <Link to=".">Terms and Conditions</Link>
+            <Link to="." className='text-slate-500 hover:text-black'>Terms and Conditions</Link>
         </li>
         <li>
-            <Link to=".">Privacy Policy</Link>
+            <Link to="." className='text-slate-500 hover:text-black'>Privacy Policy</Link>
         </li>
         <li>
           <p>Version 0.1</p> 

@@ -100,7 +100,7 @@ const SignUp = () => {
                    
                         <div className='pt-4 flex items-center justify-center'>
                             <Link to='../.'>
-                            <button className='bg-blackish text-white  px-6 py-2' type='submit'>Log In</button>
+                            <button className='bg-blackish text-white  px-6 py-2' type='submit'>Sign Up</button>
                             </Link>
                         </div>
                     </div>

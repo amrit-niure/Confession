@@ -5,7 +5,7 @@ import {IoIosAddCircle} from 'react-icons/io'
 
 const RightBar = () => {
   return (
-    <div className='w-[300px]  bg-white '>
+    <div className='w-[300px]  bg-white shadow-xl '>
       {/* Top  */}
       <div className='bg-blackish text-white flex items-center justify-center py-[.5rem]' >
         <h1 className='text-[1.5rem] font-regular'>Confess Yourself</h1>
