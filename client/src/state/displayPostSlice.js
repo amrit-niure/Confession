@@ -1,5 +1,5 @@
 import  { createSlice,createAsyncThunk } from '@reduxjs/toolkit'
-const url = 'http://localhost:5000/posts/'
+const url = 'http://192.168.0.8:5000/posts/'
 const initialState = {
  posts :[],
  loading :false
@@ -21,7 +21,6 @@ const displayPostSlice = createSlice ({
           },
             [getFeedPost.fulfilled ] : (state,action) => {
                 state.posts = action.payload
-                console.log(state.posts)
           },
           [getFeedPost.rejected ] : (state) => {
             state.loading = false

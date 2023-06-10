@@ -1,6 +1,6 @@
 
 import './App.css'
-import Header from './components/Header'
+import Main from './components/Main'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
 import About from './components/About'
@@ -15,7 +15,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes >
-          <Route element={<Header />}>
+          <Route element={<Main />}>
           <Route index element={<Home />}/>
           <Route path='categories' element={<Categories />}/>
           <Route path='about' element={<About />}/>

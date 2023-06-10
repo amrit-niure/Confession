@@ -4,7 +4,7 @@ import { useFormik } from 'formik'
 import { SlLogin } from 'react-icons/sl'
 import {Link } from 'react-router-dom'
 import * as yup from 'yup'
-const email = () => {
+const LogIn = () => {
 
     const {handleSubmit,handleChange, values,touched,errors,handleBlur} = useFormik({
         initialValues :{
@@ -73,4 +73,4 @@ const email = () => {
     )
 }
 
-export default email
+export default LogIn
