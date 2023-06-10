@@ -33,6 +33,8 @@ app.use(cors())
 // Routes 
 import postRoutes from './routes/posts.js'
 app.use('/posts',postRoutes)
+import writepostRoutes from './routes/writePost.js'
+app.use('/posts',writepostRoutes)
 
 
 

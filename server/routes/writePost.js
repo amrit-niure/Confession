@@ -1,8 +1,8 @@
 import express from 'express'
-import {getFeedPosts} from '../controllers/getPosts.js'
+import {postFeed} from '../controllers/postFeed.js'
 
 const router = express.Router()
 
-router.get('/',getFeedPosts)
+router.post('/post',postFeed)
 
 export default router
