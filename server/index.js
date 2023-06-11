@@ -31,10 +31,15 @@ app.use(cors())
 
 
 // Routes 
+// to get feed posts
 import postRoutes from './routes/posts.js'
 app.use('/posts',postRoutes)
+// to post the posts form up
 import writepostRoutes from './routes/writePost.js'
 app.use('/posts',writepostRoutes)
+// to comment in the specific post
+import writeComments from './routes/comments.js'
+app.use('/posts',writeComments)
 
 
 

@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 const postSchema = mongoose.Schema({
     userId: {
         type: String,
-        required: true,
+        default :  new mongoose.Types.ObjectId()
     },
     name: {
         type: String,

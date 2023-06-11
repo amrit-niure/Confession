@@ -21,7 +21,7 @@ const Main = () => {
       <Header />
       {isOpen && <SideMenu />}
       <div className='flex justify-center h-[92vh]  bg-lightWhite md:px-4 overflow-x-auto gap-4'>
-        <div className="hidden md:flex justify-center lg:w-[400px] h-[92vh] flex-grow ">
+        <div className="hidden md:flex justify-center lg:w-[400px] h-[92vh] flex-grow sticky top-0 left-0">
           <SideBar />
         </div>
 

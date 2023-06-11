@@ -6,16 +6,15 @@ import { getFeedPost } from '../state/displayPostSlice'
 import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
 import axios from 'axios';
-
+import {VscChromeClose} from 'react-icons/vsc'
 
 const CreatePost = () => {
     const dispatch = useDispatch()
 
     const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
         initialValues: {
-            userId : '1111',
             name: 'Amrit Niure',
-            category: 'Fuck',
+            category: '',
             heading: '',
             description: '',
             likes : new Map(),
@@ -39,8 +38,9 @@ const CreatePost = () => {
         <div className='fixed top-0 left-0 h-full w-full bg-black bg-opacity-50 flex items-center justify-center'>
             <form onSubmit={handleSubmit} className=' w-[500px] bg-[#382B35] text-white flex flex-col px-[2rem] py-[1rem] justify-between gap-6 rounded-lg'>
                 {/* heading  */}
-                <div>
-                    <h1 className='text-center text-xl font-bold pb-[.5rem]'>Create Post</h1>
+                <div className='relative'>
+                    <h1 className='text-center text-xl font-bold pb-[.5rem] '>Create Post</h1>
+                    <VscChromeClose className='absolute right-0 top-0 text-2xl' onClick={() => dispatch(toggleOpenPost())}  />
                     <hr />
                 </div>
                 {/* profile section  */}
@@ -52,11 +52,17 @@ const CreatePost = () => {
                     {/* name and topic  */}
                     <div>
                         <h1>Amrit Niure</h1>
-                        <select className="text-black">
+                        <select className="text-black" 
+                         value={values.category}
+                         name='category'
+                         onChange={handleChange}
+                         onBlur={handleBlur}
+                        >
                             <option value="" disabled selected>Topic</option>
-                            <option value="option1">Love</option>
-                            <option value="option2">Betrayal</option>
-                            <option value="option3">Murder</option>
+                            <option value="Love">Love</option>
+                            <option value="Betrayal">Betrayal</option>
+                            <option value="Murder">Murder</option>
+                            <option value="other">Other</option>
                         </select>
                     </div>
                 </div>
