@@ -2,8 +2,10 @@ import Post from '../models/Post.js'
 
 export const writeComments = async (req, res) => {
   try {
+    
     const id = req.params.id
-    const comment = req.body.comments
+    const comment = req.body.comment
+    if(comment==='') return
     console.log(id)
     console.log(comment)
     const updated = await Post.findByIdAndUpdate(

@@ -1,11 +1,17 @@
 import React from 'react'
-import logo from '../assets/logo_confession.png'
 import { useFormik } from 'formik'
 import { SlLogin } from 'react-icons/sl'
-import {Link } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { getFeedPost } from '../state/displayPostSlice'
 import * as yup from 'yup'
-const LogIn = () => {
+import FirstHeader from './FirstHeader'
 
+const LogIn = () => {
+    
+    const dispatch = useDispatch()
+    const navigate = useNavigate();
     const {handleSubmit,handleChange, values,touched,errors,handleBlur} = useFormik({
         initialValues :{
             email :'',
@@ -13,19 +19,26 @@ const LogIn = () => {
         },
         validationSchema : yup.object({
             email : yup.string().min(5,"Email should be more than 5 characters").required('Required'),
-            password : yup.string().min(10,"Password should be more than 5 characters").required('Required')
+            password : yup.string().min(5,"Password should be more than 5 characters").required('Required')
         }),
-        onSubmit : ({email,password})=>{
-                alert(`Log In : ${email} , Password: ${password}`)
+        onSubmit : async (initialValues)=>{
+                 try {
+                const logInUrl = 'http://localhost:5000/auth/login'
+                const response = await axios.post(logInUrl,initialValues)
+                const {token : receivedToken} = response.data
+                localStorage.setItem('token',receivedToken)
+                dispatch(getFeedPost());
+            } catch (err) {
+                res.status(500).json({ error: `${err.message} problem in log in` })
+            }
+            navigate('/home');
+
         }
     })
     return (
-        <div className='flex flex-col w-full h-full'>
-            <header className='flex w-full h-[8vh] px-[2.5rem] md:px-[5rem] lg:px-[10rem] py-[1.5rem] justify-center items-center'>
-                <img src={logo} alt="" className='h-[25px] w-[100px] md:h-[35px] md:w-[150px]' />
-            </header>
+        
             <div className='h-[92vh] flex justify-center items-center bg-lightWhite '>
-                <form onSubmit={handleSubmit} className='h-[400px] w-[400px] bg-white flex flex-col gap-6 p-4'>
+                <form onSubmit={handleSubmit} className=' w-[400px] bg-white flex flex-col gap-6 p-4'>
                     <div className='flex align-center justify-center border-2 border-black py-2'>
                         <h1 className='text-2xl font-bold'>Log In </h1>
                     </div>
@@ -38,7 +51,8 @@ const LogIn = () => {
                             <label htmlFor="email" className='text-lg font-bold'>Email</label>
                             <input 
                             value={values.email}
-                            type="text" 
+                            type="text"
+                            id='email'
                             name='email'
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -51,6 +65,7 @@ const LogIn = () => {
                             <label htmlFor="password" className='text-lg font-bold'>Password</label>
                             <input 
                             value={values.password}
+                            id='password'
                             type="password" 
                             name='password'
                             onChange={handleChange}
@@ -61,15 +76,17 @@ const LogIn = () => {
 
                         </div>
                         <div className='pt-4 flex items-center justify-center'>
-                            <Link to='../.'>
+                          
                             <button className='bg-blackish text-white  px-6 py-2' type='submit'>Log In</button>
-                            
-                            </Link>
+                      
                         </div>
+                       
                     </div>
+                    <span className='text-black'>Does not have an account ? <span className='underline hover:text-blue-900 cursor-pointer' onClick={()=>navigate('/signup') }> Sign Up</span></span>
+
                 </form>
             </div>
-        </div>
+     
     )
 }
 

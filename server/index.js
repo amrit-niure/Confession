@@ -6,9 +6,11 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
 import helmet from 'helmet'
-
+import multer from 'multer'
 import Post from './models/Post.js'
 import {posts} from './data/index.js'
+import { verifyToken } from './middleware/auth.js';
+
 
 
 import path from 'path'
@@ -24,6 +26,8 @@ dotenv.config()
 app.use(express.json())
 app.use(helmet())
 app.use(helmet.crossOriginResourcePolicy({policy : "cross-origin"}))
+const upload = multer();
+
 app.use(morgan("common"))
 app.use(bodyParser.json({limit : '30mb', extended : true}))
 app.use(bodyParser.urlencoded({limit : '30mb', extended : true}))
@@ -40,6 +44,9 @@ app.use('/posts',writepostRoutes)
 // to comment in the specific post
 import writeComments from './routes/comments.js'
 app.use('/posts',writeComments)
+// to register the user
+import authRoutes from './routes/auth.js'
+app.use('/auth',authRoutes)
 
 
 

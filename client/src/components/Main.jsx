@@ -32,12 +32,6 @@ const Main = () => {
           <RightBar />
         </div>
       </div>
-
-
-
-
-
-
       {openPost && <CreatePost />}
     </div>
   )

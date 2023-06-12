@@ -15,9 +15,7 @@ export const posts = [
        heading : "I cheated on my Girlfriend",
        description : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eum!",
         category : 'Betrayal',
-        likes : new Map([
-            [userIds[0],true]
-        ]),
+        likes : 0,
         comments : [
             'Random Commnet',
             "Jay Nepal"
@@ -31,9 +29,7 @@ export const posts = [
        heading : "Life is beautiful",
        description : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eum!",
         category : 'Life',
-        likes : new Map([
-            [userIds[0],true]
-        ]),
+        likes :0,
         comments : [
             'Random Commnet',
             "Jay Nepal"
@@ -47,9 +43,7 @@ export const posts = [
        heading : "I saw her cheating.",
        description : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eum!",
         category : 'Betrayal',
-        likes : new Map([
-            [userIds[0],true]
-        ]),
+        likes : 0,
         comments : [
             'Random Commnet',
             "Jay Nepal"

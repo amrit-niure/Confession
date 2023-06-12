@@ -9,21 +9,23 @@ import Categories from './components/Categories'
 import SideMenu from './components/SideMenu'
 import LogIn from './components/LogIn'
 import SignUp from './components/SignUp'
+import FirstHeader from './components/FirstHeader'
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <Routes >
-          <Route element={<Main />}>
-          <Route index element={<Home />}/>
-          <Route path='categories' element={<Categories />}/>
-          <Route path='about' element={<About />}/>
-          <Route path='feedback' element={<FAQs />}/>
+        <Routes>
+          <Route element={<FirstHeader />} >
+          <Route index element={<LogIn />} />
+          <Route path='signup' element={<SignUp />} />
           </Route>
-          <Route path='login' element={<LogIn />}/>
-          <Route path='signup' element={<SignUp />}/>
-
+          <Route path='home'element={<Main />}>
+            <Route index element={<Home />} />
+            <Route path='categories' element={<Categories />} />
+            <Route path='about' element={<About />} />
+            <Route path='feedback' element={<FAQs />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -5,7 +5,7 @@ export const getFeedPosts = async(req,res)=>{
         const post = await Post.find()
         res.status(200).json(post)
     } catch (err) {
-        res.status(409).json({message:err.message })
+        res.status(409).json({message:`Eha error xa muji ${err.message}` })
         
     }
 }

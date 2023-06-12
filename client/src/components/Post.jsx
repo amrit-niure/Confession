@@ -1,33 +1,47 @@
 import React,{useState,useEffect} from 'react'
 import profile from '../assets/coding.jpg'
-import { BiLike, BiComment, BiSend } from 'react-icons/bi'
+import { BiLike, BiComment, BiSend, } from 'react-icons/bi'
 import { BsFillReplyFill } from 'react-icons/bs'
+import { AiTwotoneLike } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFeedPost } from '../state/displayPostSlice'
 import { useFormik } from 'formik'
 import axios from 'axios';
 
-const Post = ({ name, date, category, heading, description,comments }) => {
-
+const Post = ({ likes, name, date, category, heading, description,comments,id}) => {
+console.log(likes)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getFeedPost())
   }, [])
 
   const [isClicked, setIsClicked] = useState(false);
+  const [like, setLike] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
 
-  const handleClick = () => {
+  const handleLikeClick = async() => {
+    setLike(prev => !prev);
+    // await axios.put(`http://192.168.0.8:5000/posts/${id}/comments`, initialValues)
+  };
+  const handleCommentClick = () => {
     setIsClicked(!isClicked);
   };
-console.log(comments)
+  const handleShareClick = () => {
+   setShareOpen(prev => !prev)
+    };
 
-    const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
+
+    const { handleSubmit, handleChange, values, touched, errors, handleBlur,resetForm } = useFormik({
         initialValues: {
-          comment: []
+          comment: ''
         },
         onSubmit: async (initialValues) => {
             try {
-                await axios.post('http://192.168.0.8:5000/posts/post', initialValues)
+              console.log(initialValues)
+                await axios.put(`http://192.168.0.8:5000/posts/${id}/comments`, initialValues)
+                resetForm()
+                dispatch(getFeedPost())
+             
             } catch (error) {
                 console.log(error)
 
@@ -59,24 +73,27 @@ console.log(comments)
         </div>
         {/* iocns section  */}
         <div className='flex items-center justify-between'>
-          <div className='flex gap-2 items-center cursor-pointer' >
-            <BiLike className='text-xl' />
+          <div className='flex gap-2 items-center cursor-pointer' onClick={handleLikeClick}>
+          {like ? <AiTwotoneLike className='text-xl'/> : <BiLike className='text-xl' />}
             <span>Like</span>
           </div>
-          <div className='flex gap-2 items-center cursor-pointer' onClick={handleClick}>
+          <div className='flex gap-2 items-center cursor-pointer' onClick={handleCommentClick}>
             {/*  Comment */}
             <BiComment className='text-xl' />
             <span >Comment</span>
           </div>
-          <div className='flex gap-2 items-center cursor-pointer'>
+          <div className='flex gap-2 items-center cursor-pointer' onClick={handleShareClick}>
             <BsFillReplyFill className='text-xl' />
             <span>Share</span>
           </div>
 
         </div>
         {/* like comment details section  */}
+        <div>
         <div className='pt-[2rem] flex justify-end'>
-          <span><i> 0 Likes <span>{comments.length}</span> Comments 0 shares</i></span>
+          <span><i> <span>{like ? "1" : '0'}</span> Likes <span>{comments.length}</span> Comments </i></span>
+        </div>
+{shareOpen && <span className='bg-blackish text-white'>Share option coming soon!</span> }
         </div>
         {/* comment accordian */}
         {isClicked && <div  >
@@ -84,7 +101,7 @@ console.log(comments)
           <div className='pt-2'>
             <h1 className='font-bold'>Comments</h1>
           </div>
-          <div className='flex gap-4 py-2 items-center'>
+          <form className='flex gap-4 py-2 items-center' onSubmit={handleSubmit}>
             <img src={profile} alt="profile" className='w-[30px] h-[30px] rounded-full ' />
             <input 
             type="text" 
@@ -93,13 +110,13 @@ console.log(comments)
             value={values.comment}
             name='comment'
             onChange={handleChange}
-                         onBlur={handleBlur}
+            onBlur={handleBlur}
+
             />
-            {/* onClick={handleSubmit} */}
-            <div className='cursor-pointer' >
+            <button type='submit' className='cursor-pointer' >
               <BiSend className='text-xl' />
-            </div>
-          </div>
+            </button>
+          </form>
           <div >
            {comments.map((item)=> <p>{item}</p>)}
           </div>

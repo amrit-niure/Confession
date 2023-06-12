@@ -13,7 +13,7 @@ const postSchema = mongoose.Schema({
         required : true,
     },
     description :{
-        type : String,
+        type : String,  
         required : true,
     },
     date: {
@@ -22,9 +22,9 @@ const postSchema = mongoose.Schema({
         default: () => new Date().toISOString().substring(0, 10)
       },
     category: String,
-    likes: {
-        type: Map,
-        of: Boolean
+    likes:{
+        type : Number,
+        default : 0
     },
     comments: {
         type: Array,

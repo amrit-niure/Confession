@@ -17,7 +17,7 @@ const CreatePost = () => {
             category: '',
             heading: '',
             description: '',
-            likes : new Map(),
+            likes : 0,
             comments : []
         },
         onSubmit: async (initialValues) => {
