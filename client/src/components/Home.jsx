@@ -3,7 +3,6 @@ import Post from './Post'
 import Write from './Write'
 import { useEffect } from 'react'
 import { getFeedPost } from '../state/displayPostSlice'
-import profile from '../assets/coding.jpg'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Home = (props) => {

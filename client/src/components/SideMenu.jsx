@@ -29,10 +29,10 @@ const SideMenu = () => {
                     </li>
                     <hr />
                     <li>
-                        <Link to="." className='flex gap-4 justify-center items-center'> <BiLogInCircle className='text-2xl' /> <h1 className='font'>Log In</h1></Link>
+                        <Link to="/" className='flex gap-4 justify-center items-center'> <BiLogInCircle className='text-2xl' /> <h1 className='font'>Log In</h1></Link>
                     </li>
                     <li>
-                        <Link to="." className='flex gap-4 justify-center items-center'> <GoSignIn className='text-2xl' /> <h1 className='text-lg'>Sign Up</h1></Link>
+                        <Link to="/signup" className='flex gap-4 justify-center items-center'> <GoSignIn className='text-2xl' /> <h1 className='text-lg'>Sign Up</h1></Link>
                     </li>
                 </ul>
             </nav>

@@ -23,7 +23,7 @@ const LogIn = () => {
         }),
         onSubmit : async (initialValues)=>{
                  try {
-                const logInUrl = 'http://localhost:5000/auth/login'
+                const logInUrl = 'http://192.168.0.8:5000/auth/login'
                 const response = await axios.post(logInUrl,initialValues)
                 const {token : receivedToken} = response.data
                 localStorage.setItem('token',receivedToken)

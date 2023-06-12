@@ -8,7 +8,7 @@ const Write = () => {
   return (
     <div className='flex p-[2rem] bg-white w-full items-center justify-between h-[10vh]'>
       <div className='border-2 rounded-full p-[2px]'>
-        <img src={profile} alt="picture" className='w-[60px] h-[60px] min-w-[60px] min-h-[60px] rounded-full ' />
+        <img src={profile} alt="picture" className='w-[50px] h-[50px] min-w-[51px] min-h-[51px] rounded-full ' />
         </div>
         <div onClick={()=> dispatch(toggleOpenPost())}>
             <input type="text" className='focus:outline-none bg-lightWhite rounded-3xl h-[40px]  w-[13rem]  lg:w-[18rem] px-[2rem]' placeholder='Whats on your mind ?' />

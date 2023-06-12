@@ -25,7 +25,7 @@ const SignUp = () => {
         }),
         onSubmit: async (initialValues) => {
             try {
-                const signUpUrl = 'http://localhost:5000/auth/register'
+                const signUpUrl = 'http://192.168.0.8:5000/auth/register'
                 await axios.post(signUpUrl,initialValues)
             } catch (err) {
                 res.status(500).json({ error: `${err.message} frontend cannot post the data.` })
