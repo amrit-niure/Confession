@@ -45,6 +45,11 @@ export const getFeedPost = createAsyncThunk(
 const displayPostSlice = createSlice ({
     name : 'displayPost',
     initialState,
+    reducers: {
+        updatePost : (state,action) => {
+          state.posts = state.posts.filter((item) => item._id!==action.payload)
+        }
+    },
     extraReducers :{
             [getFeedPost.pending ] : (state) => {
                 state.loading = true
@@ -59,5 +64,5 @@ const displayPostSlice = createSlice ({
     },
 })
 
-
+export const {updatePost} = displayPostSlice.actions
 export default displayPostSlice.reducer

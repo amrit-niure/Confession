@@ -5,7 +5,7 @@ import { BsFillReplyFill } from 'react-icons/bs'
 import { LuEdit } from 'react-icons/lu'
 import { AiTwotoneLike,AiOutlineDelete } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-import { getFeedPost } from '../state/displayPostSlice'
+import { getFeedPost,updatePost } from '../state/displayPostSlice'
 import { useFormik } from 'formik'
 import axios from 'axios';
 
@@ -35,6 +35,11 @@ const Post = ({ likes, name, date, category, heading, description, comments, id 
     setEditOn(prev => !prev)
   };
 
+  const handleDelete = async () => {
+    const deleteUrl = `http://192.168.0.8:5000/posts/delete/${id}`
+    await axios.delete(deleteUrl)
+    dispatch(updatePost(id))
+  };
 
   const { handleSubmit, handleChange, values, touched, errors, handleBlur, resetForm } = useFormik({
     initialValues: {
@@ -63,7 +68,7 @@ const Post = ({ likes, name, date, category, heading, description, comments, id 
         {/* User section  */}
         <div className='flex gap-4 items-center'>
           <div className='border-2 rounded-full p-[2px]'>
-            <img src={profile} alt="profile" className='w-[50px] h-[50px] rounded-full ' />
+            <img src={profile} alt="profile" className='w-[50px] h-[50px] rounded-full '/>
           </div>
           <div className="div">
             <h1 className='text-lg font-bold'>{name}</h1>
@@ -76,9 +81,7 @@ const Post = ({ likes, name, date, category, heading, description, comments, id 
             </div>
             { editOn && <div className='absolute top-[30px] right-[20px] w-[170px]'>
   <ul className=' w-full h-full flex flex-col items-left justify-center  '>
-    <li className='flex items-center justify-left gap-2 h-[30px] p-2 hover:bg-blackish hover:text-white bg-slate-300 text-blackish rounded-t-md cursor-pointer'> <span className='flex items-center justify-left gap-2 ' > <AiOutlineDelete /> <span>Delete Post</span></span></li>
-
-
+    <li className='flex items-center justify-left gap-2 h-[30px] p-2 hover:bg-blackish hover:text-white bg-slate-300 text-blackish rounded-t-md cursor-pointer ' onClick={handleDelete} > <span className='flex items-center justify-left gap-2 ' > <AiOutlineDelete /> <span>Delete Post</span></span></li>
 
     <li className='flex  items-center justify-left gap-2 h-[30px] p-2 hover:bg-blackish hover:text-white bg-slate-300 text-blackish rounded-b-md cursor-pointer'>  <span className='flex items-center justify-left gap-2 ' > <LuEdit /> <span>Edit Post</span></span></li>
    

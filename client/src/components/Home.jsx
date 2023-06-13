@@ -13,7 +13,7 @@ const Home = (props) => {
 
   useEffect(() => {
     dispatch(getFeedPost())
-  },[])
+  },[dispatch])
 
   return (
     <div className='w-[400px] lg:w-[500px]  flex flex-col gap-2'>

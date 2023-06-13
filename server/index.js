@@ -48,6 +48,9 @@ app.use('/posts',writeComments)
 import authRoutes from './routes/auth.js'
 app.use('/auth',authRoutes)
 
+import deleteRoutes from './routes/delete.js'
+app.use('/posts',deleteRoutes)
+
 
 
 
