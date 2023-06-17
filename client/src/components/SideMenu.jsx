@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux'
 const SideMenu = () => {
     const dispatch = useDispatch()
     return (
-        <div className='absolute lg:hidden flex justify-center items-center h-[92vh] w-full bg-white z-50'>
+        <div className='absolute lg:hidden flex justify-center items-center h-[92vh] w-full bg-white z-50 '>
             <nav className='flex py-[3rem] items-center w-[60vw] pl-[2rem] border-2 '>
                 <ul className='flex flex-col gap-4 text-xl items-start' onClick={() =>dispatch(toggleModal())}>
                     <li>

@@ -14,6 +14,7 @@ const CreatePost = () => {
     const { user } = useSelector((store) => store.userData)
     const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
         initialValues: {
+            userId : `${user._id}`,
             name: `${user.name}`,
             category: '',
             heading: '',
@@ -36,7 +37,7 @@ const CreatePost = () => {
 
 
     return (
-        <div className='fixed top-0 left-0 h-full w-full bg-black bg-opacity-50 flex items-center justify-center'>
+        <div className='fixed top-0 left-0 h-full w-full bg-black bg-opacity-50 flex items-center justify-center z-20'>
             <form onSubmit={handleSubmit} className=' w-[500px] bg-[#382B35] text-white flex flex-col px-[2rem] py-[1rem] justify-between gap-6 rounded-lg'>
                 {/* heading  */}
                 <div className='relative'>
@@ -69,6 +70,12 @@ const CreatePost = () => {
                 </div>
                 {/* textarea  */}
                 <div>
+                    <input className='hidden' placeholder="Post Id"
+                        value={values.userId}
+                        name='heading'
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    ></input>
                     <input className='bg-[#382B35]  h-[40px] resize-none focus:outline-none w-full scrollbar-w-0 p-[.5rem] text-lg' placeholder="Confession Topic"
                         value={values.heading}
                         name='heading'

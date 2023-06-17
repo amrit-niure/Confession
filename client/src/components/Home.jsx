@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import UpdatePost from './UpdatePost'
 import { useParams } from 'react-router-dom';
 import { userDetails } from '../state/userDetailsSlice'
+import { getCategoryPosts } from '../state/categorySlice'
 const Home = (props) => {
 
   const { id } = useParams();
@@ -18,10 +19,11 @@ const Home = (props) => {
   useEffect(() => {
     dispatch(getFeedPost())
       dispatch(userDetails(id))
+      dispatch(getCategoryPosts('Betrayal'))
   },[dispatch])
   // console.log(user)
   return (
-    <div className='w-[400px] lg:w-[500px] flex flex-col gap-2  '>
+    <div className='w-[400px] md:w-[500px] flex flex-col gap-2  '>
       <Write name = {user.name}/>
 
      {

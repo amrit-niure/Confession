@@ -21,7 +21,7 @@ function App() {
           <Route index element={<LogIn />} />
           <Route path='signup' element={<SignUp />} />
           </Route>
-          <Route path='home/:id'element={<Main />}>
+          <Route path='/:id'element={<Main />}>
             <Route index element={<Home />} />
             <Route path='categories' element={<Categories />} />
             <Route path='about' element={<About />} />

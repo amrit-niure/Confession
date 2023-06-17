@@ -58,6 +58,12 @@ app.use('/user',userDetailsRoute)
 import singlePostRoute from './routes/singlePost.js'
 app.use('/posts',singlePostRoute)
 
+import userPostsRoute from './routes/userPosts.js'
+app.use('/user',userPostsRoute)
+
+import categoryRoutes from './routes/category.js'
+app.use('/posts',categoryRoutes)
+
 
 // Moongoose Setup 
 const PORT = process.env.PORT || 8080

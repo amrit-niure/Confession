@@ -29,7 +29,7 @@ const LogIn = () => {
                 console.log(user)
                 localStorage.setItem('token',receivedToken)
                 dispatch(getFeedPost());
-                navigate(`/home/${user._id}`);
+                navigate(`/${user._id}`);
 
             } catch (error) {
                 if (error.response && error.response.status === 404) {
