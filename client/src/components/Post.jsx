@@ -3,19 +3,26 @@ import profile from '../assets/coding.jpg'
 import { BiLike, BiComment, BiSend,BiDotsHorizontalRounded } from 'react-icons/bi'
 import { BsFillReplyFill } from 'react-icons/bs'
 import { LuEdit } from 'react-icons/lu'
+import { MdOutlineReportProblem } from 'react-icons/md'
 import { AiTwotoneLike,AiOutlineDelete } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFeedPost,updatePost } from '../state/displayPostSlice'
+import { toggleUpdatePost } from '../state/updatePostSlice'
 import { useFormik } from 'formik'
+import { setPostDetails } from "../state/updatePostSlice";
 import axios from 'axios';
 
+
 const Post = ({ likes, name, date, category, heading, description, comments, id }) => {
-  console.log(likes)
+  
+// to store the selected data 
+const { user } = useSelector((store) => store.userData)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getFeedPost())
   }, [])
 
+  const [rightUser, setRightUser] = useState(true);
   const [isClicked, setIsClicked] = useState(false);
   const [like, setLike] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
@@ -31,13 +38,30 @@ const Post = ({ likes, name, date, category, heading, description, comments, id 
   const handleShareClick = () => {
     setShareOpen(prev => !prev)
   };
-  const handleEditOn = () => {
-    setEditOn(prev => !prev)
+  const handleEditOn = async () => {
+if (name === user.name){
+  setEditOn(prev => !prev)
+}else{
+  setRightUser(prev => !prev)
+}
+  };
+  const handleUpdateOn = () => {
+    const payload = {
+      post_id:id,
+      post_heading:heading,
+      post_description:description,
+      post_category:category,
+    };
+    dispatch(setPostDetails(payload));
   };
 
   const handleDelete = async () => {
     const deleteUrl = `http://192.168.0.8:5000/posts/delete/${id}`
-    await axios.delete(deleteUrl)
+    await axios.delete(deleteUrl,{
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
     dispatch(updatePost(id))
   };
 
@@ -48,7 +72,11 @@ const Post = ({ likes, name, date, category, heading, description, comments, id 
     onSubmit: async (initialValues) => {
       try {
         console.log(initialValues)
-        await axios.put(`http://192.168.0.8:5000/posts/${id}/comments`, initialValues)
+        await axios.put(`http://192.168.0.8:5000/posts/${id}/comments`, initialValues,{
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        })
         resetForm()
         dispatch(getFeedPost())
 
@@ -83,10 +111,20 @@ const Post = ({ likes, name, date, category, heading, description, comments, id 
   <ul className=' w-full h-full flex flex-col items-left justify-center  '>
     <li className='flex items-center justify-left gap-2 h-[30px] p-2 hover:bg-blackish hover:text-white bg-slate-300 text-blackish rounded-t-md cursor-pointer ' onClick={handleDelete} > <span className='flex items-center justify-left gap-2 ' > <AiOutlineDelete /> <span>Delete Post</span></span></li>
 
-    <li className='flex  items-center justify-left gap-2 h-[30px] p-2 hover:bg-blackish hover:text-white bg-slate-300 text-blackish rounded-b-md cursor-pointer'>  <span className='flex items-center justify-left gap-2 ' > <LuEdit /> <span>Edit Post</span></span></li>
+    <li className='flex  items-center justify-left gap-2 h-[30px] p-2 hover:bg-blackish hover:text-white bg-slate-300 text-blackish rounded-b-md cursor-pointer' onClick={()=> {
+      dispatch(toggleUpdatePost())
+      handleUpdateOn()
+      }}>  <span className='flex items-center justify-left gap-2 ' > <LuEdit /> <span>Edit Post</span></span></li>
    
   </ul>
 </div>}
+{
+  !rightUser && <div className='absolute top-[30px] right-[20px] w-[170px]'>
+  <ul className=' w-full h-full flex flex-col items-left justify-center  '>
+    <li className='flex items-center justify-left gap-2 h-[30px] p-2 hover:bg-blackish hover:text-white bg-slate-300 text-blackish rounded-md cursor-pointer ' > <span className='flex items-center justify-left gap-2 ' > <MdOutlineReportProblem /> <span>Report Post</span></span></li>  
+  </ul>
+</div>
+}
           </div>
         </div>
         {/* description section  */}
@@ -146,6 +184,7 @@ const Post = ({ likes, name, date, category, heading, description, comments, id 
         </div>
         }
       </div>
+
     </>
   )
 }

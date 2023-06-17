@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState }  from 'react'
 import { useFormik } from 'formik'
 import { SlLogin } from 'react-icons/sl'
 import {useNavigate } from 'react-router-dom'
@@ -9,7 +9,7 @@ import * as yup from 'yup'
 import FirstHeader from './FirstHeader'
 
 const LogIn = () => {
-    
+    const [errorMessage, setErrorMessage] = useState(null);
     const dispatch = useDispatch()
     const navigate = useNavigate();
     const {handleSubmit,handleChange, values,touched,errors,handleBlur} = useFormik({
@@ -25,13 +25,20 @@ const LogIn = () => {
                  try {
                 const logInUrl = 'http://192.168.0.8:5000/auth/login'
                 const response = await axios.post(logInUrl,initialValues)
-                const {token : receivedToken} = response.data
+                const {token : receivedToken,user} = response.data
+                console.log(user)
                 localStorage.setItem('token',receivedToken)
                 dispatch(getFeedPost());
-            } catch (err) {
-                res.status(500).json({ error: `${err.message} problem in log in` })
+                navigate(`/home/${user._id}`);
+
+            } catch (error) {
+                if (error.response && error.response.status === 404) {
+                    return  setErrorMessage(error.response.data.message);
+                  } else {
+                    console.error('Error logging in:', error.message);
+                  }
             }
-            navigate('/home');
+            
 
         }
     })
@@ -82,7 +89,8 @@ const LogIn = () => {
                         </div>
                        
                     </div>
-                    <span className='text-black'>Does not have an account ? <span className='underline hover:text-blue-900 cursor-pointer' onClick={()=>navigate('/signup') }> Sign Up</span></span>
+                 {errorMessage && <span className=' w-[150px] px-2 text-red-500'><i>{errorMessage}</i></span> }
+                    <span className='text-black'> Does not have an account ? <span className='underline hover:text-blue-900 cursor-pointer' onClick={()=>navigate('/signup') }> Sign Up</span></span>
 
                 </form>
             </div>

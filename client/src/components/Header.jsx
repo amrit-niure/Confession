@@ -2,7 +2,7 @@ import React from 'react'
 import logo from '../assets/logo_confession.png'
 import { toggleModal } from '../state/modalSlice'
 import { useDispatch} from 'react-redux'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link,useNavigate } from 'react-router-dom'
 import { FilledButton, EmptyButton } from './Blocks'
 import profile from '../assets/coding.jpg'
 import '../index.css'
@@ -10,17 +10,24 @@ import { RiMenu3Fill } from 'react-icons/ri'
 import { FaUserAlt } from 'react-icons/fa'
 import { BiLogOutCircle } from 'react-icons/bi'
 import { useState } from 'react'
+import axios from 'axios';
 
 
 
 const Header = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate();
   const [isProfileOn,setIsProfileOn] = useState(false)
   const handleProfileOn= () =>{
     setIsProfileOn(prev => !prev)
   }
-  const handleLog= () =>{
-// logic to log out 
+  const handleLogOut= async () =>{
+try {
+  localStorage.removeItem('token');
+  navigate('/')
+} catch (err) {
+  console.log(err)
+}
   }
   return (
 <header className='flex w-full h-[8vh] px-[2.5rem] md:px-[5rem] lg:px-[10rem] py-[1.5rem] justify-between items-center relative'>
@@ -71,7 +78,7 @@ const Header = () => {
 { isProfileOn && <div className='absolute w-[110px] h-[80px] top-[7vh] right-[2vw] '>
   <ul className=' w-full h-full flex flex-col items-left justify-center text-lg  '>
     <li className='flex  items-center justify-left gap-2  p-2 bg-white hover:bg-lightWhite rounded-t-md'> <FaUserAlt/><span>Profile</span></li>
-    <li className='flex  items-center justify-left gap-2 p-2 bg-white hover:bg-lightWhite rounded-b-md'> <BiLogOutCircle/><span>Log Out</span></li>
+    <li className='flex  items-center justify-left gap-2 p-2 bg-white hover:bg-lightWhite rounded-b-md' onClick={handleLogOut}> <BiLogOutCircle/><span>Log Out</span></li>
    
   </ul>
 </div>}

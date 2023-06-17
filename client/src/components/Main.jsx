@@ -3,16 +3,17 @@ import React, { useState } from 'react'
 import { NavLink, Link, Outlet } from 'react-router-dom'
 import SideMenu from './SideMenu'
 import { useSelector } from 'react-redux'
-import { toggleOpenPost } from '../state/postSlice'
 import SideBar from './SideBar'
 import RightBar from './RightBar'
 import CreatePost from './CreatePost'
+import UpdatePost from './UpdatePost'
 import Header from './Header'
 const Main = () => {
 
 
   const { isOpen } = useSelector((store) => store.modal)
   const { openPost } = useSelector((store) => store.postModal)
+  const { openUpdate } = useSelector((store) => store.update)
 
 
   const activeStyle = 'font-bold'
@@ -24,15 +25,17 @@ const Main = () => {
         <div className="hidden md:flex justify-center lg:w-[400px] h-[92vh] flex-grow sticky top-0 left-0">
           <SideBar />
         </div>
-
-        <div className="flex align-center w-[400px] md:w-[500px]">
-          <Outlet />
+        {/*  w-[400px] md:w-[500px]*/}
+        <div className="flex align-center min-w-[400px] lg:min-w-[500px] ">
+          <Outlet  />
         </div>
         <div className="hidden lg:flex justify-center w-[500px] pt-[3rem] h-[100vh]">
           <RightBar />
         </div>
       </div>
       {openPost && <CreatePost />}
+      {openUpdate && <UpdatePost  />}
+      
     </div>
   )
 }

@@ -9,8 +9,6 @@ import helmet from 'helmet'
 import multer from 'multer'
 import Post from './models/Post.js'
 import {posts} from './data/index.js'
-import { verifyToken } from './middleware/auth.js';
-
 
 
 import path from 'path'
@@ -51,7 +49,14 @@ app.use('/auth',authRoutes)
 import deleteRoutes from './routes/delete.js'
 app.use('/posts',deleteRoutes)
 
+import updateRoutes from './routes/update.js'
+app.use('/posts',updateRoutes)
 
+import userDetailsRoute from './routes/userDetails.js'
+app.use('/user',userDetailsRoute)
+
+import singlePostRoute from './routes/singlePost.js'
+app.use('/posts',singlePostRoute)
 
 
 // Moongoose Setup 

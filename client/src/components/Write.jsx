@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import profile from '../assets/coding.jpg'
 import {BsSend} from 'react-icons/bs'
 import { toggleOpenPost} from '../state/postSlice'
-import { useDispatch } from 'react-redux'
-const Write = () => {
+import { useDispatch,useSelector } from 'react-redux'
+
+const Write = ({name}) => {
   const dispatch = useDispatch()
   return (
     <div className='flex p-[2rem] bg-white w-full items-center justify-between h-[10vh]'>
@@ -11,7 +12,7 @@ const Write = () => {
         <img src={profile} alt="picture" className='w-[50px] h-[50px] min-w-[51px] min-h-[51px] rounded-full ' />
         </div>
         <div onClick={()=> dispatch(toggleOpenPost())}>
-            <input type="text" className='focus:outline-none bg-lightWhite rounded-3xl h-[40px]  w-[13rem]  lg:w-[18rem] px-[2rem]' placeholder='Whats on your mind ?' />
+            <input type="text" className='focus:outline-none bg-lightWhite rounded-3xl h-[40px]  w-[13rem]  lg:w-[18rem] px-[2rem]' placeholder={`Whats on your Mind?,${name} `} />
         </div>
         <div  className="rounded-full w-[40px] h-[40px] bg-lightWhite flex items-center justify-center">
         <BsSend className=' text-2xl '/>

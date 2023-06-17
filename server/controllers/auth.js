@@ -33,12 +33,11 @@ export const register = async (req,res) =>{
 export const login = async (req,res)=>{
     try {
         const {email,password} = req.body 
-        console.log(req.body)
         const user = await User.findOne({email:email})
-        if(!user) return res.status(400).json({message : "User does not exist!"})
+        if(!user) return res.status(404).json({message : "User does not exist!"})
 
         const isMatch = await bcrypt.compare(password,user.password)
-        if(!isMatch) return res.status(400).json({msg : "Invalid Credentials."})
+        if(!isMatch) return res.status(404).json({msg : "Invalid Credentials."})
 
         const token = jwt.sign({id :user._id},process.env.JWT_SECRET)
         delete user.password

@@ -10,6 +10,7 @@ import SideMenu from './components/SideMenu'
 import LogIn from './components/LogIn'
 import SignUp from './components/SignUp'
 import FirstHeader from './components/FirstHeader'
+import Profile from './components/Profile'
 
 function App() {
   return (
@@ -20,11 +21,12 @@ function App() {
           <Route index element={<LogIn />} />
           <Route path='signup' element={<SignUp />} />
           </Route>
-          <Route path='home'element={<Main />}>
+          <Route path='home/:id'element={<Main />}>
             <Route index element={<Home />} />
             <Route path='categories' element={<Categories />} />
             <Route path='about' element={<About />} />
             <Route path='feedback' element={<FAQs />} />
+            <Route path='profile' element={<Profile />} />
           </Route>
         </Routes>
       </BrowserRouter>

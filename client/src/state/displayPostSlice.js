@@ -56,7 +56,7 @@ const displayPostSlice = createSlice ({
           },
             [getFeedPost.fulfilled ] : (state,action) => {
                 state.posts = action.payload
-                console.log(action.payload)
+                state.loading = false
           },
           [getFeedPost.rejected ] : (state) => {
             state.loading = false

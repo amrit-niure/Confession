@@ -5,7 +5,7 @@ import { SlLogin } from 'react-icons/sl'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import * as yup from 'yup'
-import FirstHeader from './FirstHeader'
+
 
 
 const SignUp = () => {
@@ -38,7 +38,7 @@ const SignUp = () => {
 
     return (
                <div className='flex w-full h-[92vh] justify-center items-center bg-lightWhite'>
-                <form onSubmit={handleSubmit} className='h-[580px] w-[400px] bg-white flex flex-col gap-6 p-4 py-8'>
+                <form onSubmit={handleSubmit} className=' w-[400px] bg-white flex flex-col gap-6 p-4 py-8'>
                     <div className='flex align-center justify-center border-2 border-black py-2'>
                         <h1 className='text-2xl font-bold'>Sign Up</h1>
                     </div>
@@ -110,6 +110,7 @@ const SignUp = () => {
 
                         </div>
                     </div>
+                    <span className='text-black'>Already have an account ? <span className='underline hover:text-blue-900 cursor-pointer' onClick={()=>navigate('/') }> Log In</span></span>
                 </form>
             </div>
   

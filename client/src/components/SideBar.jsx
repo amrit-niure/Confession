@@ -11,7 +11,7 @@ const SideBar = () => {
     <aside className='pl-[2rem] lg:pl-0 pt-[4rem] pb-[2rem] flex flex-col justify-between '>
         <ul className='flex flex-col gap-6 text-md lg:text-lg items-start'>
             <li className='hover:bg-white hover:rounded-r-full'>
-                <NavLink to='.' className='flex gap-4 justify-baseline items-center px-4 py-2 '> <FaUserAlt className='text-lg lg:text-xl'/> <h1>User Profile</h1></NavLink>
+                <NavLink to='profile' className='flex gap-4 justify-baseline items-center px-4 py-2 '> <FaUserAlt className='text-lg lg:text-xl'/> <h1>User Profile</h1></NavLink>
             </li>
             <li className='hover:bg-white hover:rounded-r-full'>
                 <NavLink to='.' className='flex gap-4 justify-center items-center px-4 py-2 '><FaHome className='text-2xl '/> <h1>Home</h1></NavLink>

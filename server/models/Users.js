@@ -1,5 +1,10 @@
 import mongoose from 'mongoose'
 const userSchema = mongoose.Schema({
+
+    userId: {
+        type:  mongoose.Schema.Types.ObjectId,
+        default :  new mongoose.Types.ObjectId()
+    },
     name : {
         type : String,
         required : true,

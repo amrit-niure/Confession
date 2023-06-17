@@ -1,8 +1,9 @@
 import express from 'express'
+import {singlePost} from '../controllers/singlePost.js'
 import { verifyToken } from '../middleware/auth.js'
-import {deletePost} from '../controllers/deletePost.js'
+
 const router = express.Router()
 
-router.delete("/delete/:id",verifyToken,deletePost)
+router.get('/:id',singlePost)
 
 export default router

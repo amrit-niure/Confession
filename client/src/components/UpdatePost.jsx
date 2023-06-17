@@ -1,30 +1,29 @@
 import React from 'react'
 import profile from '../assets/coding.jpg'
 import '../index.css'
-import { toggleOpenPost } from '../state/postSlice'
+import { toggleUpdatePost } from '../state/updatePostSlice'
 import { getFeedPost } from '../state/displayPostSlice'
 import { useDispatch,useSelector } from 'react-redux'
 import { useFormik } from 'formik'
 import axios from 'axios';
 import {VscChromeClose} from 'react-icons/vsc'
-
-
-const CreatePost = () => {
+const UpdatePost = () => {
+    const { post_details } = useSelector((store) => store.update)
+    
     const dispatch = useDispatch()
-    const { user } = useSelector((store) => store.userData)
     const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
         initialValues: {
-            name: `${user.name}`,
-            category: '',
-            heading: '',
-            description: '',
+            name: 'Amrit Niure',
+            category: `${post_details.post_category}`,
+            heading: `${post_details.post_heading}`,
+            description:`${post_details.post_description}`,
             likes : 0,
             comments : []
         },
         onSubmit: async (initialValues) => {
             try {
-                await axios.post('http://192.168.0.8:5000/posts/post', initialValues)
-                dispatch(toggleOpenPost())
+                await axios.put(`http://192.168.0.8:5000/posts/update/${post_details.post_id}`, initialValues)
+                dispatch(toggleUpdatePost())
                 dispatch(getFeedPost())
             } catch (error) {
                 console.log(error)
@@ -36,12 +35,12 @@ const CreatePost = () => {
 
 
     return (
-        <div className='fixed top-0 left-0 h-full w-full bg-black bg-opacity-50 flex items-center justify-center'>
+        <div className='fixed top-0 left-0 h-full w-full bg-black bg-opacity-20 flex items-center justify-center'>
             <form onSubmit={handleSubmit} className=' w-[500px] bg-[#382B35] text-white flex flex-col px-[2rem] py-[1rem] justify-between gap-6 rounded-lg'>
                 {/* heading  */}
                 <div className='relative'>
-                    <h1 className='text-center text-xl font-bold pb-[.5rem] '>Create Post</h1>
-                    <VscChromeClose className='absolute right-0 top-0 text-2xl' onClick={() => dispatch(toggleOpenPost())}  />
+                    <h1 className='text-center text-xl font-bold pb-[.5rem] '>Update Post</h1>
+                    <VscChromeClose className='absolute right-0 top-0 text-2xl' onClick={() => dispatch(toggleUpdatePost())}  />
                     <hr />
                 </div>
                 {/* profile section  */}
@@ -52,7 +51,7 @@ const CreatePost = () => {
                     </div>
                     {/* name and topic  */}
                     <div>
-                        <h1 className='text-lg font-bold'>{user.name}</h1>
+                        <h1>Amrit Niure</h1>
                         <select className="text-black" 
                          value={values.category}
                          name='category'
@@ -85,11 +84,11 @@ const CreatePost = () => {
                 {/* button  */}
                 <div>
                     {/*  onClick={() => dispatch(toggleOpenPost())} */}
-                    <button type='submit' className='bg-white text-black w-full py-[6px] text-lg border-2 custom-scrollbar hover:bg-[#382B35] hover:text-white hover:border-2' >POST</button>
+                    <button type='submit' className='bg-white text-black w-full py-[6px] text-lg border-2 custom-scrollbar hover:bg-[#382B35] hover:text-white hover:border-2' >Update</button>
                 </div>
             </form>
         </div>
     )
 }
 
-export default CreatePost
+export default UpdatePost

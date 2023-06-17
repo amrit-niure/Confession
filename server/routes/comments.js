@@ -4,6 +4,6 @@ import { verifyToken } from '../middleware/auth.js'
 
 const router = express.Router()
 
-router.put('/:id/comments',writeComments)
+router.put('/:id/comments',verifyToken,writeComments)
 
 export default router
