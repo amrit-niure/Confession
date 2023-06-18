@@ -18,7 +18,7 @@ const Main = () => {
   const activeStyle = 'font-bold'
   return (
     <div>
-      <div className='px-[2.5rem]   md:px-[5rem] lg:[10rem] xl:px-[20rem] sticky top-0 left-0  bg-white z-10  '>
+      <div className='px-[2.5rem]   md:px-[5rem] lg:[10rem] xl:px-[20rem] sticky top-0 left-0  bg-white z-10'>
       <Header />
       </div>
       {isOpen && <SideMenu />}

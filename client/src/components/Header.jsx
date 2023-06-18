@@ -31,7 +31,7 @@ try {
   }
   return (
 <header className='flex h-[8vh]  py-[1.5rem] justify-between items-center relative shadow-b-xl'>
-        <Link to='.'>  <img src={logo} alt="" className='h-[25px] min-w-[100px] md:h-[35px] md:min-w-[150px]' /></Link>
+        <Link to='.'>  <img src={logo} alt="" className='h-[25px] min-w-[100px] md:h-[35px] md:min-w-[150px] self-start' /></Link>
         <nav className='font-regular text-lg '>
           <ul className='hidden gap-8 xl:flex'>
             <li  className=' hover:text-slate-500'>
@@ -60,18 +60,10 @@ try {
                   (isActive ? 'font-bold' : null)
                 }
               >
-                About
+                About Us
               </NavLink>
             </li>
-            <li className=' hover:text-slate-500'>
-              <NavLink to='about'
-                className={({ isActive }) =>
-                  (isActive ? 'font-bold' : null)
-                }
-              >
-                Blogs
-              </NavLink>
-            </li>
+         
             <li className=' hover:text-slate-500'><NavLink to='feedback'
               className={({ isActive }) =>
                 (isActive ? 'font-bold' : null)

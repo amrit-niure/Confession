@@ -12,6 +12,7 @@ export default {
         lyftPink : "#FF00BF",
         blackish : "rgba(44, 39, 39, 1)",
         lightWhite : "#F2EFEF",
+        // lightWhite : "#D7D3F4",
         lightText : "#776B6B",
       },
       fontFamily :{

@@ -29,9 +29,7 @@ const SideBar = () => {
             <li className='hover:bg-white hover:rounded-r-full'>
                 <NavLink to='categories' className='flex gap-4 justify-center items-center px-4 py-2 '> <FaFolderOpen className='text-xl ' /> <h1>Categories</h1></NavLink>
             </li>
-            <li className='hover:bg-white hover:rounded-r-full'>
-                <NavLink to='about' className='flex gap-4 justify-center items-center px-4 py-2 '> <SiBlogger className='text-2xl '/> <h1>Blogs</h1></NavLink>
-            </li>
+
             <li className='hover:bg-white hover:rounded-r-full'> 
                 <NavLink to='feedback' className='flex gap-4 justify-center items-center px-4 py-2 '> <MdFeedback className='text-2xl'/> <h1>FAQs</h1></NavLink>
             </li>

@@ -52,7 +52,7 @@ useEffect(()=> {
         </div>
       </div>
       <div>
-        <Write />
+        <Write name={user.name} />
       </div>
       {
         userPosts.map((userPosts) => (

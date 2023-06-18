@@ -7,6 +7,7 @@ import { useDispatch,useSelector } from 'react-redux'
 import { useFormik } from 'formik'
 import axios from 'axios';
 import {VscChromeClose} from 'react-icons/vsc'
+import { getuserPosts } from '../state/userPostsSlice'
 
 
 const CreatePost = () => {
@@ -27,6 +28,8 @@ const CreatePost = () => {
                 await axios.post('http://192.168.0.8:5000/posts/post', initialValues)
                 dispatch(toggleOpenPost())
                 dispatch(getFeedPost())
+                dispatch(getuserPosts(user._id)) 
+
             } catch (error) {
                 console.log(error)
 
