@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import UpdatePost from './UpdatePost'
 import { useParams } from 'react-router-dom';
 import { userDetails } from '../state/userDetailsSlice'
+import { getuserPosts } from '../state/userPostsSlice'
 import { getCategoryPosts } from '../state/categorySlice'
 const Home = (props) => {
 
@@ -19,7 +20,9 @@ const Home = (props) => {
   useEffect(() => {
     dispatch(getFeedPost())
       dispatch(userDetails(id))
+      dispatch(getuserPosts(user._id)) 
       dispatch(getCategoryPosts('Betrayal'))
+ 
   },[dispatch])
   // console.log(user)
   return (

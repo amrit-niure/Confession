@@ -5,22 +5,22 @@ import {FaHome} from 'react-icons/fa'
 import {FaFolderOpen} from 'react-icons/fa'
 import {SiBlogger} from 'react-icons/si'
 import {MdFeedback} from 'react-icons/md'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import { getuserPosts } from '../state/userPostsSlice'
+import { useEffect } from 'react'
+
 
 const SideBar = () => {
     const { user } = useSelector((store) => store.userData)
     const dispatch = useDispatch()
-
-    const onProfileClick = ()=>{
-        // dispatch get request to get the user posts data.
+    useEffect(()=> {
         dispatch(getuserPosts(user._id)) 
-    }
-
+      },[dispatch])
+      
   return (
     <aside className=' w-[300px] pb-[2rem] flex flex-col justify-between '>
         <ul className='flex flex-col gap-6 text-md lg:text-lg items-start'>
-            <li className='hover:bg-white hover:rounded-r-full' onClick={onProfileClick}>
+            <li className='hover:bg-white hover:rounded-r-full' >
                 <NavLink to='profile' className='flex gap-4 justify-baseline items-center px-4 py-2 '> <FaUserAlt className='text-lg lg:text-xl'/> <h1>User Profile</h1></NavLink>
             </li>
             <li className='hover:bg-white hover:rounded-r-full'>

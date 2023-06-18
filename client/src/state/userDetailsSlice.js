@@ -8,7 +8,7 @@ const initialState = {
 export const userDetails = createAsyncThunk(
   'user/userDetails',
   async (userId, { rejectWithValue }) => {
-    const url = `http://localhost:5000/user/${userId}`
+    const url = `http://192.168.0.8:5000/user/${userId}`
     try {
       const response = await axios.get(url, {
         headers: {

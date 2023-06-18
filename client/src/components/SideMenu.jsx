@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, Navigate } from 'react-router-dom'
 import { AiOutlineHome} from 'react-icons/ai'
 import { TbCategory } from 'react-icons/tb'
 import { MdOutlineFeedback } from 'react-icons/md'
@@ -11,6 +11,15 @@ import { useDispatch } from 'react-redux'
 
 const SideMenu = () => {
     const dispatch = useDispatch()
+    const navigate = Navigate()
+    const handleLogOut= async () =>{
+        try {
+          localStorage.removeItem('token');
+          navigate('/')
+        } catch (err) {
+          console.log(err)
+        }
+          }
     return (
         <div className='absolute lg:hidden flex justify-center items-center h-[92vh] w-full bg-white z-50 '>
             <nav className='flex py-[3rem] items-center w-[60vw] pl-[2rem] border-2 '>
@@ -29,11 +38,9 @@ const SideMenu = () => {
                     </li>
                     <hr />
                     <li>
-                        <Link to="/" className='flex gap-4 justify-center items-center'> <BiLogInCircle className='text-2xl' /> <h1 className='font'>Log In</h1></Link>
+                        <Link to="/" className='flex gap-4 justify-center items-center'> <BiLogInCircle className='text-2xl' /> <h1 className='font' onClick={handleLogOut}>Log Out</h1></Link>
                     </li>
-                    <li>
-                        <Link to="/signup" className='flex gap-4 justify-center items-center'> <GoSignIn className='text-2xl' /> <h1 className='text-lg'>Sign Up</h1></Link>
-                    </li>
+               
                 </ul>
             </nav>
         </div>
