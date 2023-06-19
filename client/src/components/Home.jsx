@@ -8,7 +8,7 @@ import UpdatePost from './UpdatePost'
 import { useParams } from 'react-router-dom';
 import { userDetails } from '../state/userDetailsSlice'
 import { getuserPosts } from '../state/userPostsSlice'
-import { getCategoryPosts } from '../state/categorySlice'
+
 const Home = (props) => {
 
   const { id } = useParams();
@@ -21,7 +21,7 @@ const Home = (props) => {
     dispatch(getFeedPost())
       dispatch(userDetails(id))
       dispatch(getuserPosts(user._id)) 
-      dispatch(getCategoryPosts('Betrayal'))
+     
  
   },[dispatch])
   // console.log(user)

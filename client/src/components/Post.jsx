@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import profile from '../assets/coding.jpg'
+import { Link, useParams } from 'react-router-dom';
 import { BiLike, BiComment, BiSend,BiDotsHorizontalRounded } from 'react-icons/bi'
 import { BsFillReplyFill } from 'react-icons/bs'
 import { LuEdit } from 'react-icons/lu'
@@ -13,7 +14,7 @@ import { setPostDetails } from "../state/updatePostSlice";
 import axios from 'axios';
 
 
-const Post = ({ likes, name, date, category, heading, description, comments, id }) => {
+const Post = ({ likes, name,identifier, date, category, heading, description, comments, id }) => {
   
 // to store the selected data 
 const { user } = useSelector((store) => store.userData)
@@ -80,6 +81,7 @@ if (name === user.name){
         resetForm()
         dispatch(getFeedPost())
 
+
       } catch (error) {
         console.log(error)
 
@@ -95,11 +97,12 @@ if (name === user.name){
       <div className='p-[2rem] bg-white w-full'>
         {/* User section  */}
         <div className='flex gap-4 items-center'>
-          <div className='border-2 rounded-full p-[2px]'>
+          {/* bug here, after clicking in link , it acts as the account of the clickked profile  */}
+        <Link to={`profile`}> <div className='border-2 rounded-full p-[2px]'>
             <img src={profile} alt="profile" className='w-[50px] h-[50px] rounded-full '/>
-          </div>
+          </div></Link>
           <div className="div">
-            <h1 className='text-lg font-bold'>{name}</h1>
+            <Link to={`profile`}><h1 className='text-lg font-bold'>{name}</h1></Link>
             <p className='text-lightText text-sm'>Confessed : <span className='text-black'> {date}</span> In : <span className='text-black'>{category}</span></p>
           </div>
           <div className='relative ml-auto self-start ' onClick={handleEditOn}>
@@ -174,7 +177,7 @@ if (name === user.name){
               onBlur={handleBlur}
 
             />
-            <button type='submit' className='cursor-pointer' >
+            <button type='submit' className='cursor-pointer flex items-center justify-center w-[44px] h-[30px]  border-[1px] border-blackish rounded-sm' >
               <BiSend className='text-xl' />
             </button>
           </form>

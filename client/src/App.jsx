@@ -6,6 +6,7 @@ import Home from './components/Home'
 import About from './components/About'
 import FAQs from './components/FAQs'
 import Categories from './components/Categories'
+import Specific from './components/Specific'
 import SideMenu from './components/SideMenu'
 import LogIn from './components/LogIn'
 import SignUp from './components/SignUp'
@@ -24,6 +25,7 @@ function App() {
           <Route path='/:id'element={<Main />}>
             <Route index element={<Home />} />
             <Route path='categories' element={<Categories />} />
+            <Route path='categories/:topic' element={<Specific />} />
             <Route path='about' element={<About />} />
             <Route path='feedback' element={<FAQs />} />
             <Route path='profile' element={<Profile />} />

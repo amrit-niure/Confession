@@ -4,7 +4,7 @@ import { EmptyButton } from './Blocks'
 
 const FAQs = () => {
   return (
-    <div className='pt-[2rem] flex flex-col gap-8  w-[400px] md:w-[500px] '>
+    <div className='pt-[2rem] flex flex-col gap-8 h-[100vh] w-[400px] md:w-[500px] '>
       <div>
         <h1 className='text-2xl font-bold text-center w-full underline'>Got Any Questions ? </h1>
       </div>

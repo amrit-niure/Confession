@@ -2,8 +2,15 @@ import React from 'react'
 import {FaGraduationCap} from 'react-icons/fa'
 import {GiLoveHowl,GiBrokenHeart,GiBrokenBottle,GiBurningDot,GiOpenBook} from 'react-icons/gi'
 import {IoIosAddCircle} from 'react-icons/io'
+import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { getCategoryPosts } from '../state/categorySlice';
 
 const RightBar = () => {
+  const dispatch = useDispatch()
+  const onClickHandler = (topic) => {
+    dispatch(getCategoryPosts(topic))
+  }
   return (
     <div className='w-[300px] h-[700px] shadow-xl bg-white'>
       {/* Top  */}
@@ -17,13 +24,13 @@ const RightBar = () => {
         </div>
       <hr />
         <ul className='pl-[2rem] py-[1.5rem] flex flex-col gap-6'>
-            <li className='flex text-[1.15rem] gap-3 items-center'> <GiLoveHowl  className='text-xl'/><h2>Love</h2></li>
-            <li className='flex text-[1.15rem] gap-3 items-center'> <GiBrokenHeart  className='text-xl'/><h2>Murder</h2></li>
-            <li className='flex text-[1.15rem] gap-3 items-center'> <GiBrokenBottle  className='text-xl'/><h2>Betrayal</h2></li>
+           <Link to='categories/Love' onClick={()=> onClickHandler('Love')}> <li className='flex text-[1.15rem] gap-3 items-center'> <GiLoveHowl  className='text-xl'/><h2>Love</h2></li> </Link> 
+           <Link to='categories/Murder' onClick={()=> onClickHandler('Murder')}> <li className='flex text-[1.15rem] gap-3 items-center'> <GiBrokenHeart  className='text-xl'/><h2>Murder</h2></li> </Link> 
+           <Link to='categories/Betrayal' onClick={()=> onClickHandler('Betrayal')}> <li className='flex text-[1.15rem] gap-3 items-center'> <GiBrokenBottle  className='text-xl'/><h2>Betrayal</h2></li> </Link> 
       
 
         </ul>
-        <span className='pl-[4rem] pb-[1.5rem] flex gap-2 text-[1.15rem] items-center'><IoIosAddCircle /> <h2>Other Topics</h2> </span>
+       <Link to='categories/other' onClick={()=> onClickHandler('other')}> <span className='pl-[4rem] pb-[1.5rem] flex gap-2 text-[1.15rem] items-center'><IoIosAddCircle /> <h2>Other  Topics</h2> </span> </Link> 
       </div>
       <hr />
       <div className='flex py-[1rem] pl-[2rem]  gap-3 justify-left items-center'>

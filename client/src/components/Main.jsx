@@ -24,7 +24,7 @@ const Main = () => {
       {isOpen && <SideMenu />}
       <div className='w-[100vw] md:px-[100px] flex justify-center bg-lightWhite overflow-x-hidden'>
         <div className=' w-[1280px] flex gap-[40px] justify-center  relative'>
-        <div className="hidden md:flex justify-left w-[300px] h-[92vh] sticky top-0 left-0 pt-[3rem] ">
+        <div className=" hidden md:flex justify-left w-[300px] h-[92vh] sticky top-0 left-0 pt-[3rem] ">
           <SideBar />
         </div>
         {/*  w-[400px] md:w-[500px]*/}
