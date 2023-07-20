@@ -4,10 +4,11 @@ const initialState = {
     userPosts : [],
     loading : false,
 }
+const endpoint = import.meta.env.VITE_ENDPOINT;
 export const getuserPosts = createAsyncThunk(
     'user/userPosts',
     async (userId, { rejectWithValue }) => {
-        const url = `http://192.168.0.8:5000/user/posts/${userId}`
+        const url = `${endpoint}/user/posts/${userId}`
       try {
         const response = await axios.get(url);
         

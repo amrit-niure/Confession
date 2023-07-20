@@ -1,5 +1,6 @@
 import  { createSlice,createAsyncThunk } from '@reduxjs/toolkit'
-const url = 'http://192.168.0.8:5000/posts/'
+const endpoint = import.meta.env.VITE_ENDPOINT;
+const url = `${endpoint}/posts/`
 import axios from 'axios'
 const initialState = {
  posts :[],

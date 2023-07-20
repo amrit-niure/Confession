@@ -4,11 +4,11 @@ const initialState = {
     categoryPosts : [],
     loading : false,
 }
-
+const endpoint = import.meta.env.VITE_ENDPOINT;
 export const getCategoryPosts = createAsyncThunk(
     'user/categoryPosts',
     async (category, { rejectWithValue }) => {
-        const url = `http://192.168.0.8:5000/posts/category/${category}`
+        const url = `${endpoint}/posts/category/${category}`
       try {
         const response = await axios.get(url);
         
