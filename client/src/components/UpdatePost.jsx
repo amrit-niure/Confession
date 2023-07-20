@@ -9,7 +9,7 @@ import axios from 'axios';
 import {VscChromeClose} from 'react-icons/vsc'
 const UpdatePost = () => {
     const { post_details } = useSelector((store) => store.update)
-    
+    const endpoint = import.meta.env.VITE_ENDPOINT;
     const dispatch = useDispatch()
     const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
         initialValues: {
@@ -22,7 +22,7 @@ const UpdatePost = () => {
         },
         onSubmit: async (initialValues) => {
             try {
-                await axios.put(`http://192.168.0.8:5000/posts/update/${post_details.post_id}`, initialValues)
+                await axios.put(`${endpoint}/posts/update/${post_details.post_id}`, initialValues)
                 dispatch(toggleUpdatePost())
                 dispatch(getFeedPost())
             } catch (error) {

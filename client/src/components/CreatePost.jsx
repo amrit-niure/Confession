@@ -11,6 +11,7 @@ import { getuserPosts } from '../state/userPostsSlice'
 
 
 const CreatePost = () => {
+    const endpoint = import.meta.env.VITE_ENDPOINT;
     const dispatch = useDispatch()
     const { user } = useSelector((store) => store.userData)
     const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
@@ -25,7 +26,7 @@ const CreatePost = () => {
         },
         onSubmit: async (initialValues) => {
             try {
-                await axios.post('http://192.168.0.8:5000/posts/post', initialValues)
+                await axios.post(`${endpoint}/posts/post`, initialValues)
                 dispatch(toggleOpenPost())
                 dispatch(getFeedPost())
                 dispatch(getuserPosts(user._id)) 

@@ -9,6 +9,7 @@ import * as yup from 'yup'
 
 
 const SignUp = () => {
+    const endpoint = import.meta.env.VITE_ENDPOINT;
     const navigate = useNavigate();
     const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
         initialValues: {
@@ -25,7 +26,7 @@ const SignUp = () => {
         }),
         onSubmit: async (initialValues) => {
             try {
-                const signUpUrl = 'http://192.168.0.8:5000/auth/register'
+                const signUpUrl = `${endpoint}/auth/register`
                 await axios.post(signUpUrl,initialValues)
             } catch (err) {
                 res.status(500).json({ error: `${err.message} frontend cannot post the data.` })

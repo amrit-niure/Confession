@@ -15,7 +15,7 @@ import axios from 'axios';
 
 
 const Post = ({ likes, name,identifier, date, category, heading, description, comments, id }) => {
-  
+  const endpoint = import.meta.env.VITE_ENDPOINT;
 // to store the selected data 
 const { user } = useSelector((store) => store.userData)
   const dispatch = useDispatch()
@@ -57,7 +57,7 @@ if (name === user.name){
   };
 
   const handleDelete = async () => {
-    const deleteUrl = `http://192.168.0.8:5000/posts/delete/${id}`
+    const deleteUrl = `${endpoint}/posts/delete/${id}`
     await axios.delete(deleteUrl,{
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -73,7 +73,7 @@ if (name === user.name){
     onSubmit: async (initialValues) => {
       try {
         console.log(initialValues)
-        await axios.put(`http://192.168.0.8:5000/posts/${id}/comments`, initialValues,{
+        await axios.put(`${endpoint}/posts/${id}/comments`, initialValues,{
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },

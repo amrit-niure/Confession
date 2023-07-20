@@ -9,6 +9,7 @@ import * as yup from 'yup'
 import FirstHeader from './FirstHeader'
 
 const LogIn = () => {
+    const endpoint = import.meta.env.VITE_ENDPOINT;
     const [errorMessage, setErrorMessage] = useState(null);
     const dispatch = useDispatch()
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ const LogIn = () => {
         }),
         onSubmit: async (initialValues) => {
             try {
-                const logInUrl = 'http://192.168.0.8:5000/auth/login'
+                const logInUrl = `${endpoint}/auth/login`
                 const response = await axios.post(logInUrl, initialValues)
                 const { token: receivedToken, user } = response.data
                 console.log(user)
