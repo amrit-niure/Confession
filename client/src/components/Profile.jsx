@@ -24,8 +24,7 @@ const Profile = () => {
   console.log(userPosts)
 
 useEffect(()=> {
-      dispatch(userDetails(id))
-
+  dispatch(userDetails(id))
   dispatch(getuserPosts(id)) 
 },[dispatch])
 

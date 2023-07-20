@@ -12,19 +12,15 @@ import { getuserPosts } from '../state/userPostsSlice'
 const Home = (props) => {
 
   const { id } = useParams();
-  console.log(id)
   const { posts } = useSelector((state) => state.post)
   const dispatch = useDispatch()
   const { openUpdate } = useSelector((store) => store.update)
-    const { user } = useSelector((store) => store.userData)
+  const { user } = useSelector((store) => store.userData)
   useEffect(() => {
     dispatch(getFeedPost())
       dispatch(userDetails(id))
       dispatch(getuserPosts(user._id)) 
-     
- 
-  },[dispatch])
-  // console.log(user)
+  },[])
   return (
     <div className='w-[400px] md:w-[500px] flex flex-col gap-2  '>
       <Write name = {user.name}/>

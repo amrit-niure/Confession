@@ -20,7 +20,7 @@ const Post = ({ likes, name,identifier, date, category, heading, description, co
 const { user } = useSelector((store) => store.userData)
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getFeedPost())
+    // dispatch(getFeedPost())
   }, [])
 
   const [rightUser, setRightUser] = useState(true);

@@ -10,6 +10,7 @@ const RightBar = () => {
   const dispatch = useDispatch()
   const onClickHandler = (topic) => {
     dispatch(getCategoryPosts(topic))
+    dispatch()
   }
   return (
     <div className='w-[300px] h-[700px] shadow-xl bg-white'>

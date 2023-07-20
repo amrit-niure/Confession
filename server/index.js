@@ -24,17 +24,31 @@ dotenv.config()
 app.use(express.json())
 app.use(helmet())
 app.use(helmet.crossOriginResourcePolicy({policy : "cross-origin"}))
-const upload = multer();
 
 app.use(morgan("common"))
 app.use(bodyParser.json({limit : '30mb', extended : true}))
 app.use(bodyParser.urlencoded({limit : '30mb', extended : true}))
 app.use(cors())
 
+const storage = multer.diskStorage({
+    destination : (req, file, cb) => {
+       cb(null,"images");
+    },
+    filename : (req,file,cb) => {
+        cb(null,Date.now() + path.extname(file.originalname))
+    }
+})
+const upload = multer({storage: storage});
 
+app.post('/upload',upload.single('image'), (req,res) =>{
+    res.send("Image Uploaded")
+})
 // Routes 
 // to get feed posts
 import postRoutes from './routes/posts.js'
+app.get('/',(req,res)=>{
+    res.status(200).json({success:true})
+})
 app.use('/posts',postRoutes)
 // to post the posts form up
 import writepostRoutes from './routes/writePost.js'
@@ -64,13 +78,17 @@ app.use('/user',userPostsRoute)
 import categoryRoutes from './routes/category.js'
 app.use('/posts',categoryRoutes)
 
+import guidesRoute from './routes/faq.js'
+app.use('/faq',guidesRoute)
+
 
 // Moongoose Setup 
 const PORT = process.env.PORT || 8080
 const connectDB = async () => {
     try {
         // connection string 
-        const con = await mongoose.connect('mongodb://127.0.0.1:27017/real', {
+        // const con = await mongoose.connect('mongodb://127.0.0.1:27017/real', {
+        const con = await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
