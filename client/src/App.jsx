@@ -26,7 +26,6 @@ function App() {
             <Route index element={<Home />} />
             <Route path='categories' element={<Categories />} />
             <Route path='categories/:topic' element={<Specific />} />
-            <Route path='about' element={<About />} />
             <Route path='feedback' element={<FAQs />} />
             <Route path='profile' element={<Profile />} />
           </Route>

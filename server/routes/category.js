@@ -4,6 +4,6 @@ import { verifyToken } from '../middleware/auth.js'
 
 const router = express.Router()
 
-router.get('/category/:topic',getCategoryPosts)
+router.get('/category/:topic',verifyToken,getCategoryPosts)
 
 export default router

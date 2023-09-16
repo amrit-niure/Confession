@@ -33,8 +33,8 @@ useEffect(()=> {
     <div className='flex flex-col gap-2'>
       {/* profile  */}
 
-      <div className=' relative w-[400px] md:w-[500px] mt-[8rem] bg-white flex flex-col gap-[20px] pb-[20px]' >
-        <div className='absolute h-[108px] w-[108px] bg-[#8491df] rounded-full top-[-4.5rem] left-[200px] flex items-center justify-center'>
+      <div className=' relative w-[400px] md:w-[500px] mt-[8rem] bg-white flex items-center flex-col gap-[20px] pb-[20px]' >
+        <div className='absolute h-[108px] w-[108px] bg-[#8491df] rounded-full top-[-4.5rem] flex items-center justify-center'>
           <img src={profile} alt="profile" className=' absolute w-[100px] h-[100px] rounded-full border-[2px] border-white' />
         </div>
         {/* name */}

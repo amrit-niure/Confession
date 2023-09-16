@@ -34,9 +34,7 @@ const SideMenu = () => {
                     <li>
                         <NavLink to="categories" className='flex gap-4 justify-center items-center'> <TbCategory className='text-2xl' /> <h1 className='text-lg'>Categories</h1></NavLink>
                     </li>
-                    <li>
-                        <NavLink to="about" className='flex gap-4 justify-center items-center'> <IoInformationCircleOutline className='text-2xl' /> <h1 className='text-lg'>About</h1></NavLink> 
-                    </li>
+                
                     <li>
                         <NavLink to="feedback" className='flex gap-4 justify-center items-center'> <MdOutlineFeedback className='text-2xl' /> <h1 className='text-lg'>FAQs</h1></NavLink>
                     </li>

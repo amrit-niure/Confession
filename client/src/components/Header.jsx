@@ -54,15 +54,7 @@ try {
                 Categories
               </NavLink>
             </li>
-            <li className=' hover:text-slate-500'>
-              <NavLink to='about'
-                className={({ isActive }) =>
-                  (isActive ? 'font-bold' : null)
-                }
-              >
-                About Us
-              </NavLink>
-            </li>
+     
          
             <li className=' hover:text-slate-500'><NavLink to='feedback'
               className={({ isActive }) =>
