@@ -102,7 +102,7 @@ if (name === user.name){
             <img src={profile} alt="profile" className='w-[50px] h-[50px] rounded-full '/>
           </div></Link>
           <div className="div">
-            <Link to={`profile`}><h1 className='text-lg font-bold'>{name}</h1></Link>
+            <Link to={`/${identifier}/profile`}><h1 className='text-lg font-bold'>{name}</h1></Link>
             <p className='text-lightText text-sm'>Confessed : <span className='text-black'> {date}</span> In : <span className='text-black'>{category}</span></p>
           </div>
           <div className='relative ml-auto self-start ' onClick={handleEditOn}>
